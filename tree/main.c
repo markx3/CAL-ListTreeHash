@@ -10,12 +10,15 @@
 #include <time.h>
 #include "avl.h"
 
+int num_elements;
+
 int main(int argc, char *argv[]) {
   /* SOME VARS */
   char *line = NULL;
   size_t len = 0;
   ssize_t read;
   char *tok;
+  int num_ele;
   FILE *stream;
   FILE *output;
   clock_t start, stop;
@@ -33,7 +36,7 @@ int main(int argc, char *argv[]) {
   /* GETTING ENTRY No. */
   getline(&line, &len, stream);
   int num = atoi(line); // Number of entries
-  int num_ele = num;
+  num_elements = num_ele = num;
 
   /* DECLARING AVL */
   avl_tree_t *t;
@@ -106,10 +109,12 @@ int main(int argc, char *argv[]) {
     strcat(n, s);
     unsigned long hash = 5381;
     int c;
-
-    while (c = *n++)
-        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
-
+    //printf("key = %s\n", n);
+    while (c = *n++) {
+        //printf("%lu\n", hash);
+        hash = ((((hash << 5) + hash))+ c) ; /* hash * 33 + c */
+      }
+      //getchar();
     return hash;
 
     // hash function usada: djb2 (http://www.cse.yorku.ca/~oz/hash.html)

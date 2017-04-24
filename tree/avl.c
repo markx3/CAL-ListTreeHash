@@ -162,7 +162,6 @@ void avl_insert( avl_tree_t *tree, int value, element_t *payload) {
 		node = avl_node_init();
 		node->key = value;
     node->element = payload;
-    //memcpy(node->element, payload, sizeof(element_t));
 
 		tree->root = node;
 
