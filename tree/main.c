@@ -13,6 +13,12 @@
 int num_elements;
 
 int main(int argc, char *argv[]) {
+
+  if (argc <= 1) {
+    printf("ERRO! Indique qual entrada utilizar.\nExemplo: ./exec entrada-1.txt\n");
+    exit(EXIT_FAILURE);
+  }
+
   /* SOME VARS */
   char *line = NULL;
   size_t len = 0;
