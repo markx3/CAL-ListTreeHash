@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
   list_t l;
   list_init(&l);
 
-  /* INPUT TREATMENT */
+  /* INPUT TREATMENT & LIST INSERTION */
   printf("Inserindo %d elementos na lista.\n", num_ele);
   start = clock();
   while (num-- > 0) {
