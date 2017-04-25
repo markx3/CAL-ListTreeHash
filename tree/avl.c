@@ -21,7 +21,7 @@ avl_node_t *avl_node_init() {
     return NULL;
   node->left = NULL;
   node->right = NULL;
-  node->key = 0;
+  node->key = malloc(sizeof(char)*ELE_CHAR*2);
   node->element = NULL;
   return node;
 }
@@ -152,7 +152,7 @@ void avl_balance( avl_tree_t *tree ) {
 }
 
 
-void avl_insert( avl_tree_t *tree, int value, element_t *payload) {
+void avl_insert( avl_tree_t *tree, char *value, element_t *payload) {
 	avl_node_t *node = NULL;
 	avl_node_t *next = NULL;
 	avl_node_t *last = NULL;
@@ -160,7 +160,8 @@ void avl_insert( avl_tree_t *tree, int value, element_t *payload) {
 	/* Well, there must be a first case */
 	if( tree->root == NULL ) {
 		node = avl_node_init();
-		node->key = value;
+		//node->key = value;
+    strcpy(node->key, value);
     node->element = payload;
 
 		tree->root = node;
@@ -172,35 +173,35 @@ void avl_insert( avl_tree_t *tree, int value, element_t *payload) {
 		while( next != NULL ) {
 			last = next;
 
-			if( value < next->key ) {
+			if( strcmp(value, next->key) < 0) {
 				next = next->left;
 
-			} else if( value > next->key ) {
+			} else if( strcmp(value, next->key) > 0) {
 				next = next->right;
 
 			/* Have we already inserted this node? */
-    } else if( value == next->key ) {
+    } else if( strcmp(value, next->key) == 0) {
 				/* This shouldn't happen. */
 			}
 		}
 
 		node = avl_node_init();
-    node->key = value;
+    strcpy(node->key, value);
     node->element = payload;
 
-		if( value < last->key ) last->left = node;
-		if( value > last->key ) last->right = node;
+		if( strcmp(value, last->key) < 0 ) last->left = node;
+		if( strcmp(value, last->key) > 0 ) last->right = node;
 
 	}
 
 	avl_balance( tree );
 }
 
-avl_node_t *avl_find( avl_tree_t *tree, int value ) {
+avl_node_t *avl_find( avl_tree_t *tree, char *value ) {
 	avl_node_t *current = tree->root;
 
-	while( current && current->key != value ) {
-		if( value > current->key )
+	while( current && strcmp(value, current->key) != 0 ) {
+		if(strcmp(value, current->key) > 0)
 			current = current->right;
 		else
 			current = current->left;

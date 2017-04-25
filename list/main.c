@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
   /* FILE HANDLING */
   stream = fopen(argv[1], "r");
   strcat(out, argv[1]);
-  printf("Saída: %s\n\n", out);
+  //printf("Saída: %s\n\n", out);
   output = fopen(out, "w");
   if (stream == NULL || output == NULL)
     exit(EXIT_FAILURE);
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
   list_init(&l);
 
   /* INPUT TREATMENT & LIST INSERTION */
-  printf("Inserindo %d elementos na lista.\n", num_ele);
+  //printf("Inserindo %d elementos na lista.\n", num_ele);
   start = clock();
   while (num-- > 0) {
     int index;
@@ -64,14 +64,14 @@ int main(int argc, char *argv[]) {
   }
   stop = clock();
   elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
-  printf("Tempo para inserir todos os %d elementos na lista: %.2lfms\n\n", num_ele, elapsed);
+  printf("INSERT [%d] LIST: %.2lfms\n", num_ele, elapsed);
 
   getline(&line, &len, stream);
   num = atoi(line); // Number of searches
   num_ele = num;
 
   /* SEARCHING ELEMENTS */
-  printf("Procurando elementos na lista.\n");
+  //printf("Procurando elementos na lista.\n");
   start = clock();
   while (num-- > 0) {
     char *p = malloc(sizeof(char)*ELE_CHAR);
@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
   }
   stop = clock();
   elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
-  printf("Tempo para buscar todos os %d elementos na lista: %.2lfms\n\n", num_ele, elapsed);
+  printf("SEARCH [%d] LIST: %.2lfms\n", num_ele, elapsed);
 
   /* CLOSING STUFF */
   fclose(stream);

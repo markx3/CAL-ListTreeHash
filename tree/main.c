@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
   /* FILE HANDLING */
   stream = fopen(argv[1], "r");
   strcat(out, argv[1]);
-  printf("Saída: %s\n\n", out);
+  //printf("Saída: %s\n\n", out);
   output = fopen(out, "w");
   if (stream == NULL || output == NULL)
     exit(EXIT_FAILURE);
@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
   t = avl_tree_init();
 
   /* INPUT TREATMENT & LIST INSERTION */
-  printf("Inserindo %d elementos na árvore.\n", num_ele);
+  //printf("Inserindo %d elementos na árvore.\n", num_ele);
   start = clock();
   while (num-- > 0) {
     int index;
@@ -70,13 +70,13 @@ int main(int argc, char *argv[]) {
     //printf("s = %s\n", s);
 
     element_t *ele = element_init(index, p, s);
-    int key = (int)calc_key(p, s);
+    //int key = (int)calc_key(p, s);
     //printf("key = %d\n", key);
-    avl_insert(t, key, ele);
+    avl_insert(t, calc_key(p, s), ele);
   }
   stop = clock();
   elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
-  printf("Tempo para inserir todos os %d elementos na árvore: %.2lfms\n\n", num_ele, elapsed);
+  printf("INSERT [%d] TREE: %.2lfms\n", num_ele, elapsed);
 
 
     getline(&line, &len, stream);
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
     num_ele = num;
 
     /* SEARCHING ELEMENTS */
-    printf("Procurando elementos na árvore.\n");
+    //printf("Procurando elementos na árvore.\n");
     start = clock();
     while (num-- > 0) {
       char *p = malloc(sizeof(char)*ELE_CHAR);
@@ -96,11 +96,11 @@ int main(int argc, char *argv[]) {
       tok = strtok(NULL, " ");
       strcpy(s, tok);
 
-      fprintf(output, "%d\n", avl_find(t, (int)calc_key(p, s))->element->index);
+      fprintf(output, "%d\n", avl_find(t, calc_key(p, s))->element->index);
     }
     stop = clock();
     elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
-    printf("Tempo para buscar todos os %d elementos na árvore: %.2lfms\n\n", num_ele, elapsed);
+    printf("SEARCH [%d] TREE: %.2lfms\n", num_ele, elapsed);
 
     /* CLOSING STUFF */
     fclose(stream);
@@ -109,18 +109,21 @@ int main(int argc, char *argv[]) {
     return 0;
   }
 
-  int calc_key(char *p, char *s) {
+  char *calc_key(char *p, char *s) {
     char *n = malloc(sizeof(char)*ELE_CHAR*2);
     strcat(n, p);
     strcat(n, s);
-    unsigned long hash = 5381;
+    /*unsigned long hash = 1;
     int c;
     //printf("key = %s\n", n);
     while (c = *n++) {
         //printf("%lu\n", hash);
-        hash = ((((hash << 5) + hash))+ c) ; /* hash * 33 + c */
-      }
+        hash = ((((hash << 1) * hash))+ c) ; /* hash * 33 + c */
+      //}
+      //printf("%lu\n", hash);
       //getchar();
-    return hash;
+    //printf("%s\n", n);
+    return n;
+    //return hash;
 }
     // hash function usada: djb2 (http://www.cse.yorku.ca/~oz/hash.html)

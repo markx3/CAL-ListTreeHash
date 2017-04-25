@@ -11,7 +11,7 @@ typedef struct {
 typedef struct avl_node {
   struct avl_node *left;
   struct avl_node *right;
-  int key;
+  char *key;
   element_t *element;
 } avl_node_t;
 
@@ -30,8 +30,8 @@ avl_node_t *avl_rotate_rightleft( avl_node_t *node );
 avl_node_t *avl_rotate_rightright( avl_node_t *node );
 avl_node_t *avl_balance_node( avl_node_t *node );
 void avl_balance( avl_tree_t *tree );
-void avl_insert( avl_tree_t *tree, int value, element_t *payload );
-avl_node_t *avl_find( avl_tree_t *tree, int value );
-int calc_key(char *p, char *s);
+void avl_insert( avl_tree_t *tree, char *value, element_t *payload);
+avl_node_t *avl_find( avl_tree_t *tree, char *value );
+char *calc_key(char *p, char *s);
 
 #endif /* _AVL_H */
