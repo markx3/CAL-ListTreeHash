@@ -136,7 +136,6 @@ avl_node_t *avl_balance_node( avl_node_t *node ) {
 
 		newroot = node;
 	}
-
 	return( newroot );
 }
 
@@ -194,7 +193,8 @@ void avl_insert( avl_tree_t *tree, char *value, element_t *payload) {
 
 	}
 
-	avl_balance( tree );
+	//avl_balance( tree );
+  //avl_balance_node(node);
 }
 
 avl_node_t *avl_find( avl_tree_t *tree, char *value ) {

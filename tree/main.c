@@ -83,6 +83,8 @@ int main(int argc, char *argv[]) {
     num = atoi(line); // Number of searches
     num_ele = num;
 
+    //avl_balance(t);
+
     /* SEARCHING ELEMENTS */
     //printf("Procurando elementos na árvore.\n");
     start = clock();
