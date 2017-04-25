@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
   FILE *output;
   clock_t start, stop;
   double elapsed;
-  char out[ELE_CHAR] = "saida_da_";
+  char out[ELE_CHAR] = "list_saida";
 
   /* FILE HANDLING */
   stream = fopen(argv[1], "r");

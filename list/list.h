@@ -13,7 +13,6 @@
 #include <string.h>
 #include "list.h"
 
-
 typedef struct ele {
   int index;
   char *p;
@@ -23,6 +22,7 @@ typedef struct ele {
 
 typedef struct {
   element_t *head;
+  element_t *tail;
 } list_t;
 
 void list_init(list_t *l);

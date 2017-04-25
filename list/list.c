@@ -27,6 +27,7 @@ int list_insert_start(list_t *l, int index, char *p, char *s) {
   if (ele == NULL) return 0; // Failed to allocate element.
   ele->next = l->head;
   l->head = ele;
+  l->tail = ele;
   return 1; // Success
 }
 
@@ -36,11 +37,10 @@ int list_insert_end(list_t *l, int index, char *p, char *s) {
   element_t *ele = elloc(index, p, s);
   if (ele == NULL) return 0; // Failed to allocate element.
   // Create iterator to go through list
-  element_t *iterator = l->head;
-  while(iterator->next != NULL)
-    iterator = iterator->next;
-  iterator->next = ele;
+  element_t *tail = l->tail;
+  tail->next = ele;
   ele->next = NULL;
+  l->tail = ele;
   return 1; // Success
 }
 

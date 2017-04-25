@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
   FILE *output;
   clock_t start, stop;
   double elapsed;
-  char out[ELE_CHAR] = "saida_da_";
+  char out[ELE_CHAR] = "tree_saida";
 
   /* FILE HANDLING */
   stream = fopen(argv[1], "r");
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
     num_ele = num;
 
     /* SEARCHING ELEMENTS */
-    printf("Procurando elementos na lista.\n");
+    printf("Procurando elementos na árvore.\n");
     start = clock();
     while (num-- > 0) {
       char *p = malloc(sizeof(char)*ELE_CHAR);
@@ -122,6 +122,5 @@ int main(int argc, char *argv[]) {
       }
       //getchar();
     return hash;
-
+}
     // hash function usada: djb2 (http://www.cse.yorku.ca/~oz/hash.html)
-  }
