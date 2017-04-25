@@ -1,6 +1,6 @@
 import subprocess
 
-for tipo in ["list", "tree", "hash"]:
+for tipo in ["list", "hash", "tree"]:
     for i in range(1,6):
         e = "diff -w -u " + tipo + "_saidaentrada-" + str(i) + ".txt" + " saida/saida-" +str(i) + ".txt"
         print(e)
