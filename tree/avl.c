@@ -53,7 +53,6 @@ int avl_balance_factor( avl_node_t *node ) {
 
 	if( node->left  ) bf += avl_node_height( node->left );
 	if( node->right ) bf -= avl_node_height( node->right );
-
 	return bf ;
 }
 
